@@ -22,7 +22,6 @@ from xgboost import XGBRegressor
 
 from script import feature_selection_by_rfe, transformation, evaluation
 
-#%%
 #Important: the pwd should be in src folder
 AQ_201804 = pd.read_csv('data/aiqQuality_201804.csv')
 AQ_201701201801 = pd.read_csv('data/airQuality_201701-201801.csv')
