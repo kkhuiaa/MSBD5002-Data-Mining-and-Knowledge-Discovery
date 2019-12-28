@@ -50,7 +50,7 @@ class CategoryToOrdinal():
         """
         stored_cols_dict = {}
         X_merged = pd.concat([X, y], axis=1)
-        for col in X.columns.tolist():
+        for col in X:
             stored_col_dict = {}
             group_by_table = X_merged.groupby(col)[y.name].agg(['mean', 'count']).reset_index(drop=False)
             group_by_table2 = group_by_table[group_by_table['count'] < self.other_threshold]
@@ -94,7 +94,7 @@ class CategoryToOrdinal():
             if col in self.stored_cols_dict.keys():
                 X_transformed[col] = [
                     self.stored_cols_dict[col]['rank_value'][row] if row in self.stored_cols_dict[col]['rank_value'].keys()
-                    else self.stored_cols_dict[col]['speical_value']['NA'] if (pd.isnull(row)) and ('NA' in self.stored_cols_dict[col]['speical_value'].keys())
+                    else self.stored_cols_dict[col]['speical_value']['NA'] if (pd.isnull(row)) & ('NA' in self.stored_cols_dict[col]['speical_value'].keys())
                     else self.stored_cols_dict[col]['speical_value']['other'] if 'other' in self.stored_cols_dict[col]['speical_value'].keys()
                     else self.stored_cols_dict[col]['speical_value']['mode']
                     for row in X_transformed[col]]
